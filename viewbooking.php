@@ -106,12 +106,17 @@ input[type="file"] {
 
     </style>
   </head>
+  <div class="control-group">
+                               
   <body>
    <?php
     include('admin.html');
     ?>
   <main class="main auto-height" style="background-image:url('img/car-wash-detailing-station.jpg');">
-
+  <div class="control-group">
+                                <?php echo ""?>
+                                    <input type="date" id="bookingdate" name="bookingdate" class="form-control" placeholder="date" required="required" />
+                                </div>
     <main class="container">
         <div class="row">
             <?php
@@ -121,7 +126,7 @@ input[type="file"] {
             $result = mysqli_query($conn, $sql);
             while ($row = mysqli_fetch_array($result)) {
             ?>
-                <div class="col-md-3">
+                <div class="col-md-3" id="order">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $row['b_id']; ?></h5>
@@ -179,7 +184,7 @@ input[type="file"] {
 
 
 
-    <script>
+<script>
     function showUpdatePopup(t_Id, Name, Price, duration) {
         document.getElementById('updatetypeId').value = t_Id;
         document.getElementById('updateName').value = Name;
@@ -195,6 +200,34 @@ input[type="file"] {
         // Close the updatePopup
         document.getElementById('updatePopup').style.display = 'none';
     }
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script type="text/javascript"  src="jquery.main.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $("#bookingdate").change(function(){
+            var dateid = $(this).val();
+    
+            $.ajax({
+                url: "datefilter.php",
+                method: "POST",
+                data: {dateID: dateid },
+                success: function(data){
+                    $("#order").html(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
 </script>
   </body>
 </html>

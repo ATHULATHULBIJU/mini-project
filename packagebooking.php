@@ -1,4 +1,5 @@
 
+
 <?php
 include('connection.php');
 session_start(); // Start the session
@@ -103,12 +104,12 @@ if(isset($_GET['id'])){
 
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
-                            <a href="index.php" class="nav-item nav-link">Home</a>
+                            <a href="customerdashboard.php" class="nav-item nav-link">Home</a>
                             <a href="about.php" class="nav-item nav-link active">About</a>
                             <a href="service.php" class="nav-item nav-link">Service</a>
                             <a href="package.php" class="nav-item nav-link">Package</a>
                             <a href="location.php" class="nav-item nav-link">Washing Points</a>
-                            <div class="nav-item dropdown">
+                        <!--    <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu">
                                     <a href="blog.php" class="dropdown-item">Blog Grid</a>
@@ -116,7 +117,7 @@ if(isset($_GET['id'])){
                                     <a href="team.php" class="dropdown-item">Team Member</a>
                                     <a href="booking.php" class="dropdown-item">Schedule Booking</a>
                                 </div>
-                            </div>
+                            </div>-->
                             <a href="contact1.php" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="ml-auto">
@@ -148,8 +149,8 @@ if(isset($_GET['id'])){
         
         <!-- Location Start -->
         <div class="location">
-            <div class="container">
-                <div class="row">
+            <div class="container" style="display: flex;justify-content: center; margin-left: 0px;">
+                <div class="row" style="width: 132%;margin-left: -201px;">
                     <div class="col-lg-7">
                         <div class="section-header text-left">
                             <p></p>
@@ -212,12 +213,15 @@ $srow=mysqli_fetch_array($result)
  ?>
 
                             <div class="control-group">
+                            <?php echo "choosing package of wash"?>
                                     <input type="text" id="type" name="type" class="form-control" value=<?php echo $srow['name']; ?> required="required" />
                                 </div>
                                 <div class="control-group">
+                                <?php echo "Duration of washing"?>
                                     <input type="text" id="duration" name="duration" class="form-control" value=<?php echo $srow['duration']; ?> required="required" />
                                 </div>
                                 <div class="control-group">
+                                <?php echo "Enter the vechicle number"?>
                                     <input type="text" id="vechicleno" name="vechicleno" class="form-control" placeholder="vechicleno" required="required" />
                                 </div>
                                 <div class="control-group">
@@ -236,18 +240,22 @@ $srow=mysqli_fetch_array($result)
 $result = mysqli_query($conn,$sql);
 echo "<select name='tbl_car' id='tbl_car'>";?>
 <option value="" disabled selected>- Select car-</option>;
+<?php echo "choosing type of wash"?>
 <?php
 while ($row = mysqli_fetch_array($result)) {
     echo "<option value='" . $row['car_id'] . "'>" . $row['type'] . "</option>";
 }
 echo "</select>";
-?> </div>
+?>
+<?php echo "Basic pay of washing"?> </div>
                                 <input type="text" id="pamount" name="pamount" class="form-control" value=<?php echo $srow['price']; ?>  required="required" />
+                                <?php echo "Basic pay+price of car type"?>
                                 <?php $_SESSION['packageamount'] = $srow['price'];   ?>
                                
                                 <div class="control-group"  id="amount">
                                   
                                     <input type="text" id="camount" name="camount" class="form-control"  required="required" />
+                                    <?php echo "Total price"?>
                                     <input type="text" id="tamount" name="tamount"  value=<?php echo $srow['price']; ?> class="form-control"  required="required" />
                                   
                                                               

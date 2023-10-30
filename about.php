@@ -124,7 +124,7 @@
                         <h2>About Us</h2>
                     </div>
                     <div class="col-12">
-                        <a href="">Home</a>
+                        <a href="index.php">Home</a>
                         <a href="">About Us</a>
                     </div>
                 </div>
@@ -149,8 +149,7 @@
                         </div>
                         <div class="about-content">
                             <p>
-                                Lorem ipsum dolor sit amet elit. In vitae turpis. Donec in hendre dui, vel blandit massa. Ut vestibu suscipi cursus. Cras quis porta nulla, ut placerat risus. Aliquam nec magna eget velit luctus dictum
-                            </p>
+                            Car washing is the basic process of cleaning the exterior and, optionally, the interior of a vehicle. It primarily involves the removal of dirt, dust, mud, road grime, and other surface contaminants. Car detailing is a more thorough and comprehensive process compared to a standard car wash. It focuses on restoring and enhancing the vehicle's appearance, both inside and out.     </p>
                             <ul>
                                 <li><i class="far fa-check-circle"></i>Seats washing</li>
                                 <li><i class="far fa-check-circle"></i>Vacuum cleaning</li>

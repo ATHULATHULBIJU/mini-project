@@ -95,7 +95,7 @@
                             <a href="service.php" class="nav-item nav-link">Service</a>
                             <a href="package.php" class="nav-item nav-link">Package</a>
                             <a href="location.php" class="nav-item nav-link">Washing Points</a>
-                            <div class="nav-item dropdown">
+                         <!--   <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu">
                                     <a href="blog.php" class="dropdown-item">Blog Grid</a>
@@ -103,7 +103,7 @@
                                     <a href="team.php" class="dropdown-item">Team Member</a>
                                     <a href="booking.php" class="dropdown-item">Schedule Booking</a>
                                 </div>
-                            </div>
+                            </div>-->
                             <a href="contact1.php" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="ml-auto">
@@ -124,7 +124,7 @@
                         <h2>Washing Points</h2>
                     </div>
                     <div class="col-12">
-                        <a href="">Home</a>
+                        <a href="customerdashboard.php">Home</a>
                         <a href="">Location</a>
                     </div>
                 </div>

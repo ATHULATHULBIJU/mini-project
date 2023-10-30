@@ -2,31 +2,30 @@
 // Start the session
 session_start();
 ?>
-<?php include('connection.php'); 
+<?php include('connection.php');
 
-if($_SERVER["REQUEST_METHOD"]=="POST")
-{
-    echo "inside isset";
-    $id=$_POST['ids'];
-    echo $id;
-    $sql="DELETE FROM tbl_feedback WHERE fb_id='".$id."'";
-    $result=mysqli_query($conn,$sql);
-    
-}
-else{
-
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['ids'])) {
+        $id = $_POST['ids'];
+        $sql = "DELETE FROM tbl_feedback WHERE fb_id = $id";
+        if (mysqli_query($conn, $sql)) {
+            // Feedback deleted successfully
+        } else {
+            echo "Error deleting feedback: " . mysqli_error($conn);
+        }
+    }
 }
 ?>
+
 <!DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sidebar Menu for Admin Dashboard | CodingNepal</title>
     <link rel="stylesheet" href="css/admin.css" />
-    <!-- Fontawesome CDN Link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <style>
@@ -98,93 +97,49 @@ input[type="file"] {
 
 
 
+    
     </style>
-  </head>
-  <body>
-   <?php
+</head>
+
+<body>
+    <?php
     include('admin.html');
     ?>
-  <main class="main" style="background-image:url('img/car-wash-detailing-station.jpg');">
-    <main class="container">
-        <div class="row">
-            <?php
-            
-           
-            $sql = "SELECT fb.fb_id, c.c_username, c.email, fb.subject, fb.message 
-        FROM tbl_feedback fb
-        JOIN tbl_customers c ON fb.c_id = c.c_id";
-            $result = mysqli_query($conn, $sql);
-            while ($row = mysqli_fetch_array($result)) {
-            ?>
-                <div class="col-md-3">
-                    <div class="card">
-                        <div class="card-body">
-                        <h5 class="card-title"><?php echo $row['fb_id']; ?></h5>
-                            <p class="card-text">Name: <?php echo $row['c_username']; ?></p>
-                            <p class="card-text">Email: <?php echo $row['email']; ?></p>
-                            <p class="card-text">subject: <?php echo $row['subject']; ?></p>
-                            <p class="card-text">message: <?php echo $row['message']; ?></p>
-                            <form method="POST" action="viewaddedtype.php">
-                                <input type="hidden" name="ids" value="<?php echo $row['fb_id']; ?>">
-                                <input type="submit" name="id" value="Delete" class="btn btn-danger">
-                               </form>
 
-                            <div id="updatePopup" class="popup">
-    <div class="popup-content">
-        <span class="close" onclick="closeUpdatePopup()">&times;</span>
-        <h2>Update package</h2>
-        <form method="POST" action="update_type.php" enctype="multipart/form-data">
-            <input type="hidden" name="t_id" id="updatetypeId">
-            <label for="updateName"> Name:</label>
-            <input type="text" id="updateName" name="name" required>
-            <label for="updatePrice">Price:</label>
-            <input type="number" id="updatePrice" name="subject" required>
-
-            <label for="updateduration">duration:</label>
-            <input type="text" id="updateduration" name="message" required>
-
-<!--             <label for="updateProductImage">Product Image:</label>
-            <input type="file" id="updateProductImage" name="product_image" accept="image/*"> -->
-            
-            <input type="submit" class="btn btn-danger" value="Update">
-        </form>
-    </div>
-</div>
-
-
-
-
+    <main class="main" style="background-image:url('img/car-wash-detailing-station.jpg');">
+        <main class="container">
+            <div class="row">
+                <?php
+                $sql = "SELECT fb.fb_id, c.c_username, c.email, fb.subject, fb.message 
+                        FROM tbl_feedback fb
+                        JOIN tbl_customers c ON fb.c_id = c.c_id";
+                $result = mysqli_query($conn, $sql);
+                while ($row = mysqli_fetch_array($result)) {
+                ?>
+                    <div class="col-md-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title"><?php echo $row['fb_id']; ?></h5>
+                                <p class="card-text">Name: <?php echo $row['c_username']; ?></p>
+                                <p class="card-text">Email: <?php echo $row['email']; ?></p>
+                                <p class="card-text">subject: <?php echo $row['subject']; ?></p>
+                                <p class="card-text">message: <?php echo $row['message']; ?></p>
+                                <form method="POST" action="">
+                                    <input type="hidden" name="ids" value="<?php echo $row['fb_id']; ?>">
+                                    <input type="submit" name="id" value="Delete" class="btn btn-danger">
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-            <?php } ?>
-        </div>
+                <?php } ?>
+            </div>
+        </main>
     </main>
 
     <script src="admin.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+</body>
 
-
-
-<script>
-    function showUpdatePopup(t_Id, Name, Price, duration) {
-        document.getElementById('updatetypeId').value = t_Id;
-        document.getElementById('updateName').value = Name;
-        document.getElementById('updatePrice').value = Price;
-        document.getElementById('updateduration').value = duration;
-
-
-        // Show the updatePopup
-        document.getElementById('updatePopup').style.display = 'block';
-    }
-
-    function closeUpdatePopup() {
-        // Close the updatePopup
-        document.getElementById('updatePopup').style.display = 'none';
-    }
-</script>
-
-  </body>
 </html>

@@ -7,7 +7,6 @@ include("connection.php");
 
 <head>
     <meta charset="utf-8">
-    <title>AutoWash - Car Wash Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
@@ -100,15 +99,15 @@ include("connection.php");
                         <a href="service.php" class="nav-item nav-link">Service</a>
                         <a href="package.php" class="nav-item nav-link">Package</a>
                         <a href="location.php" class="nav-item nav-link">Washing Points</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
+                        <!--<div class="nav-item dropdown">
+                            <a href="single" class="nav-link dropdown-toggle" data-toggle="dropdown">comment</a>
                             <div class="dropdown-menu">
-                                <a href="blog.php" class="dropdown-item">Blog Grid</a>
+                                <a href="" class="dropdown-item"></a>
                                 <a href="single.php" class="dropdown-item">Detail Page</a>
-                                <a href="team.php" class="dropdown-item">Team Member</a>
+                                <a href="" class="dropdown-item"></a>
                                 <a href="bookingcopy.php" class="dropdown-item">Schedule Booking</a>
                             </div>
-                        </div>
+                        </div>-->
                         <a href="contact1.php" class="nav-item nav-link">Contact</a>
 
                     </div>
@@ -223,7 +222,7 @@ include("connection.php");
         <div class="container">
             <div class="section-header text-center">
                 <p>What We Do?</p>
-                <h2>Premium Washing Services</h2>
+                <h2> Washing Services</h2>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6">

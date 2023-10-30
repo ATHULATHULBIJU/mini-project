@@ -114,7 +114,7 @@ else{
                             <a href="service.php" class="nav-item nav-link">Service</a>
                             <a href="package.php" class="nav-item nav-link">Package</a>
                             <a href="location.php" class="nav-item nav-link">Washing Points</a>
-                            <div class="nav-item dropdown">
+                          <!--  <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu">
                                     <a href="blog.php" class="dropdown-item">Blog Grid</a>
@@ -122,7 +122,7 @@ else{
                                     <a href="team.php" class="dropdown-item">Team Member</a>
                                     <a href="booking.php" class="dropdown-item">Schedule Booking</a>
                                 </div>
-                            </div>
+                            </div>-->
                             <a href="contact1.php" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="ml-auto">
@@ -143,7 +143,7 @@ else{
                         <h2>Contact Us</h2>
                     </div>
                     <div class="col-12">
-                        <a href="">Home</a>
+                        <a href="customerdashboard.php">Home</a>
                         <a href="">Contact</a>
                     </div>
                 </div>
@@ -194,9 +194,13 @@ else{
                     </div>
                     <div class="col-md-7">
                         <div class="contact-form">
-                            <div id="success"></div>
+                            <div id="success">                           
+                                <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                 <strong>Your message has been sent. </strong>
+                             </div></div>
                             <form action = "contact1.php" method ="POST">
-                               
+                            
                                 <div class="control-group">
                                     <input type="text" class="form-control" id="subject" name ="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
                                     <p class="help-block text-danger"></p>
@@ -213,7 +217,7 @@ else{
                         </div>
                     </div>
                     <div class="col-md-12">
-                        <iframe src="https://maps.google.com/?q=Edappally%2C+Kochi%2C+Kerala&ftid=0x3b080da53444d5e9:0xb46c57c6b1bc9aff&entry=gps" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        <iframe src="https://maps.app.goo.gl/VjKBrvTNJgEaWVqt5" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@ const sidebarClose = document.querySelector("#sidebar-close");
 const menu = document.querySelector(".menu-content");
 const menuItems = document.querySelectorAll(".submenu-item");
 const subMenuTitles = document.querySelectorAll(".submenu .menu-title");
+const subMenutitles = document.querySelectorAll(".submenu2 .menu-title2");
 
 sidebarClose.addEventListener("click", () => sidebar.classList.toggle("close"));
 

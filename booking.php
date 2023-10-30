@@ -108,7 +108,7 @@ if(isset($_GET['id'])){
                             <a href="service.php" class="nav-item nav-link">Service</a>
                             <a href="package.php" class="nav-item nav-link">Package</a>
                             <a href="location.php" class="nav-item nav-link">Washing Points</a>
-                            <div class="nav-item dropdown">
+                          <!--  <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu">
                                     <a href="blog.php" class="dropdown-item">Blog Grid</a>
@@ -116,7 +116,7 @@ if(isset($_GET['id'])){
                                     <a href="team.php" class="dropdown-item">Team Member</a>
                                     <a href="booking.php" class="dropdown-item">Schedule Booking</a>
                                 </div>
-                            </div>
+                            </div>-->
                             <a href="contact1.php" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="ml-auto">
@@ -200,11 +200,19 @@ if(isset($_GET['id'])){
                     </div>
                     <div class="col-lg-10">
                         <div class="location-form">
+                        <div class="col-md-7">
+                        <div class="contact-form">
+                            <div id="success">                           
+                                <div class="alert alert-success">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                 
+                             </div></div>
+                    
                             <h3>Request for a car wash</h3>
                          
 <?php
- $_SESSION['typeid']=$_GET['id'];
- $typeid = $_SESSION['typeid'];
+ //$_SESSION['typeid']=$_GET['id'];
+ $typeid = $_SESSION['washtypeID'];
  $sql = "SELECT * FROM tbl_type where t_id='".$typeid."'";
 $result = mysqli_query($conn,$sql);
 $srow=mysqli_fetch_array($result)
@@ -214,46 +222,61 @@ $srow=mysqli_fetch_array($result)
 
                             <form action="typebook.php" method="POST">
                             <div class="control-group">
-                                    <input type="text" id="type" name="type" class="form-control" value=<?php echo $srow['name']; ?> required="required" />
+                            <?php echo "choosing type of wash"?>
+                                    <input type="text" id="type" name="type" class="form-control" value=<?php echo $srow['name'];?> required="required" />
+                                 <?php echo $srow['name'];?> 
                                 </div>
                                 <div class="control-group">
+                                <?php echo "Duration of washing"?>
                                     <input type="text" id="duration" name="duration" class="form-control" value=<?php echo $srow['duration']; ?> required="required" />
                                 </div>
                                 <div class="control-group">
-                                    <input type="text" id="vechicleno" name="vechicleno" class="form-control" placeholder="vechicleno" required="required" />
+                                <?php echo "Enter your vechile Number"?>
+                                    <input type="text" id="vechicleno" name="vechicleno" class="form-control" placeholder="KL-NO-AB-NO" required="required" />
                                 </div>
                                 <div class="control-group">
-                                    <input type="date" id="bookingdate" name="bookingdate" class="form-control" placeholder="date" required="required" />
+                                <?php echo ""?>
+                                <input type="date" id="bookingdate" name="bookingdate" class="form-control" placeholder="date" required="required" value=<?php echo $_SESSION['bookDate'] ;?>/>
                                 </div>
                                 <div class="control-group">
                                 <div class="control-group">
-                                    <input type="time" id="bookingtime" name="bookingtime" class="form-control" placeholder="time" required="required" />
+                                    <?php 
+                                    $sql="select * from tbl_slots where slot_id='".$_SESSION['slottypeID']."'";
+                                    $rslt = mysqlI_query($conn,$sql);
+                                    $rows = mysqlI_fetch_array($rslt);
+
+                                    ?>
+                                    <input type="time" id="bookingtime" name="bookingtime" class="form-control" placeholder="time" required="required" value="<?php echo $row['start'];?>-<?php echo $row['end'];?>" />
                                 </div>
                                 <div class="control-group">
+                                <?php 
+                                    $sql="select * from tbl_car where car_id='".$_SESSION['washtypeID']."'";
+                                    $rslt = mysqlI_query($conn,$sql);
+                                    $rows = mysqlI_fetch_array($rslt);
+
+                                    ?>
+                                    <input type="time" id="bookingtime" name="bookingtime" class="form-control" placeholder="time" required="required" value="<?php echo $row['type'];?>" />
+                                </div>
                                     
                                     
-  <b> select Car-type: </b><?php
-  
-  $sql = "SELECT * FROM tbl_car";
-$result = mysqli_query($conn,$sql);
-echo "<select name='tbl_car' id='tbl_car'>";?>
-<option value="" disabled selected>- Select car-</option>;
-<?php
-while ($row = mysqli_fetch_array($result)) {
-    echo "<option value='" . $row['car_id'] . "'>" . $row['type'] . "</option>";
-}
-echo "</select>";
-?>
+
+
+<?php echo "Basic pay of package"?>
+
   
 
 
                                 </div>
                                 <input type="text" id="samount" name="samount" class="form-control" value=<?php echo $srow['price']; ?>  required="required" />
+                                <?php echo "Basic pay + price of package"?>
+                                
                                 <?php $_SESSION['serviceamount'] = $srow['price'];   ?>
                                
                                 <div class="control-group"  id="amount">
                                   
                                     <input type="text" id="camount" name="camount" class="form-control"  required="required" />
+                                    <?php echo "Total price"?>
+
                                     <input type="text" id="tamount" name="tamount"  value=<?php echo $srow['price']; ?> class="form-control"  required="required" />
                                   
                                                               
@@ -261,11 +284,12 @@ echo "</select>";
                             
                                   <div>
 
-        <button class="btn btn-custom" type="submit">Send Request</button>
+                             <button class="btn btn-custom" type="submit">Send Request</button>
    
    
    
                              </form>
+                             
                                 </div>
                             </form>
                         </div>
@@ -323,10 +347,9 @@ echo "</select>";
                 </div>
             </div>
             <div class="container copyright">
-                
+                <p>&copy; <a href="#"></a> <a href="https://htmlcodex.com"></a></p>
             </div>
-        </div>
-        <!-- Footer End -->
+        </div> <!-- Footer End -->
         
         <!-- Back to top button -->
         <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>

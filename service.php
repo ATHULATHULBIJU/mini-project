@@ -1,3 +1,16 @@
+<html>
+<head>
+<script type="text/javascript" src="swal/jquery.min.js"></script>
+<script type="text/javascript" src="swal/bootstrap.min.js"></script>
+<script type="text/javascript" src="swal/sweetalert2@11.js"></script>
+</head>
+<body>
+</html>
+
+<?php
+include('connection.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,6 +35,8 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        <link href="css/packagestyle.css" rel="stylesheet">
+   
     </head>
 
     <body>
@@ -95,7 +110,7 @@
                             <a href="service.php" class="nav-item nav-link">Service</a>
                             <a href="package.php" class="nav-item nav-link">Package</a>
                             <a href="location.php" class="nav-item nav-link">Washing Points</a>
-                            <div class="nav-item dropdown">
+                          <!--  <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu">
                                     <a href="blog.php" class="dropdown-item">Blog Grid</a>
@@ -103,13 +118,13 @@
                                     <a href="team.php" class="dropdown-item">Team Member</a>
                                     <a href="booking.php" class="dropdown-item">Schedule Booking</a>
                                 </div>
-                            </div>
+                            </div>-->
                             <a href="contact1.php" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="ml-auto">
-                            <a class="btn btn-custom" href="booking.php">Booking</a>
+                            <a class="btn btn-custom" href="booking.php" id ="btnbooking">Booking</a>
                         </div>
-                    </div>
+                   </div>
                 </nav>
             </div>
         </div>
@@ -117,67 +132,484 @@
         
         
         <!-- Page Header Start -->
-        <div class="page-header">
+       <div class="page-header">
             <div class="container">
-                <div class="row">
+                
                     <div class="col-12">
                         <h2>Service</h2>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Page Header End -->
+        <!-- Page Header End--> 
         <div class="price">
             <div class="container">
                 <div class="section-header text-center">
                     <p>Washing Methods</p>
                     <h2>Choose one</h2>
                 </div>
-        <div class="row">
+           </div>
+           
+        </div> 
+        <div class="container">
+                <h1 class="text-center">Vehicle Type</h1>
+     
+    <div class="car-card-container">
+ 
+        <?php
+        $sql = "SELECT * FROM tbl_car";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($result)) {
+        ?>
+        <div class="car-card-column">
+        <a href='#' class="setcartype" data-id="<?php echo $row['car_id']; ?>">
+            <div class="car-card">
+            
+                <div class="image-container">
+                    
+                        <img src="image/<?php echo $row['image']; ?>">
+                   
+                    <div class="card-body">
+                        <h3><?php echo $row['type']; ?></h3>
+                    </div>
+                    
+                </div>
+                </a>
+            </div>
+        </div>
+        <?php
+        }
+        ?>
+      </div>
+  </div>
+    </div>
 
-        <?php 
-        include_once('connection.php');
-        $sql="select * from tbl_type";
-        $result=mysqli_query($conn,$sql);
-        while($row=mysqli_fetch_array($result)){
+
+<div class="container my-5">
+    <h1 class="text-center">Wash Type</h1>
+    <div class="car-card-container">
+        <?php
+        $sql = "SELECT * FROM tbl_type";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_array($result)) {
+            ?>
+            <div class="car-card">
+            <a href='#' class="setwashtype" data-id="<?php echo $row['t_id']; ?>">
+                <div class="image-container">
+                    
+                        <img src="image/<?php echo $row['image']; ?>">
+                   
+                    <div class="card-body">
+                        <h3><?php echo $row['name']; ?></h3>
+                        <h3>Duration: <?php echo $row['duration']; ?></h3>
+                        <h3>Price: <?php echo $row['price']; ?></h3>
+                    </div>
+                </div>
+                </a>
+            </div>
+            <?php
+        }
+        ?>
+    </div>
+    <div>
+      
+    </div>
+</div>
+
+
+<!-- Rest of your code remains the same -->
+<div class="container">
+<table border="1">
+    <tr>
+        <?php
+        // Get today's date
+        $today = date("Y-m-d");
+       
+        $datearray = array();
+
+        // Loop to display dates for the next three days
+        for ($i = 1; $i <= 5; $i++) {
+            $nextDate = date("Y-m-d", strtotime("+$i day"));
+            $datearray[$i] = $nextDate;
+            $nextDay = date("d", strtotime($nextDate));
+            $nextDayName = date("l", strtotime($nextDate));
+            echo "<th style='width:200px;'>$nextDay $nextDayName</th>";
+        }
+        ?>
+    </tr>
+    <tr>
+        <?php
+        $sql = "SELECT * FROM tbl_slots";
+        $result = mysqli_query($conn, $sql);
 
         
+        while ($row = mysqli_fetch_array($result)) {
+            for ($i = 1; $i <= 5; $i++) {
+                echo "<td>";
+                $start = $row['start'];
+                $end = $row['end'];
+                $slotId = $row['slot_id'];
+        
+                // Check if the slot is already booked for the specific date
+                $queryToCheckDisable = "SELECT COUNT(*) AS count FROM booking WHERE slot_id = $slotId AND bookdate = '$datearray[$i]'";
+                $resultDisable = mysqli_query($conn, $queryToCheckDisable);
+                $rowDisable = mysqli_fetch_assoc($resultDisable);
+        
+                if ($rowDisable['count'] > 0) {
+                    // If the slot should be disabled for the specific date
+                    echo "<span style='color: gray;'>$start-$end</span>";
+                } else {
+                    // If the slot should be enabled for the specific date
+                    $bookdate = date("Y-m-d", strtotime("+$i day"));
+                    echo "<a href='' class='setslottype' data-id=$slotId data-bookdate=$bookdate> $start-$end </a>";
+                    //<a href='' class="setwashtype" data-id="<?php echo $row['t_id'];
+                
+                
+                }
+        
+                echo "</td>";
+            }
+            echo "</tr>";
+        }
         ?>
-<!--minu.....-->
+        
+        
+    </tr>
+</table>
+<div>
+       
+    </div>
+<!-- hidden division -->
+<div id="myDiv" style="display: none;">
+<p>Session Value:
+<div>
+        <p>Session Value: <span id="cartypeValue">
+            <input type="hidden" id="cartypeValue" value="<?php echo $_SESSION['cartypeID']; ?>">
+            <?php echo $_SESSION['cartypeID']; ?>
+        </span></p>
+    </div> <?php
+
+       
+    ?>
+</div>
 
 
-<div class="col-md-4" style="padding:20px;">
-                        <div class="price-item featured-item">
-                            <div class="price-header">
-                                <img class="card-img-top" src="image/<?php echo $row['image'];?>" alt="<?php echo $row['name'];?>">
-                                <h3><?php echo $row['name'];?></h3>
-                                <h2><span>Rs</span><strong><?php echo $row['price'];?></strong><span></span></h2>
-                            </div>
-                            <div class="price-body">
-                                <ul>
-                                    <li><i class="far fa-check-circle"></i><?php echo $row['duration'];?></li>
-                                   
-                                </ul>
-                            </div>
-                            <div class="price-footer">
-                           
-  
-                            <a class="btn btn-custom" href="booking.php?id=<?php echo $row['t_id'];?> ">Booking Now </a>
-                            
-                          
-                            </div>
-                        </div>
-                    </div>
+
+
+<?php
+include('connection.php');
+
+
+?>
+<!-- Booking summary -->
+<li class="cbs-main-list-item cbs-clear-fix cbs-main-list-item-booking">
+    <div class="cbs-main-list-item-section-header cbs-clear-fix">
+        <h4 class="cbs-main-list-item-section-header-header">
+            <span>Booking summary</span>
+        </h4>
+        <h5 class="cbs-main-list-item-section-header-subheader">
+            <span>Please provide us with your contact information.</span>
+        </h5>
+    </div>
+    <div class="cbs-main-list-item-section-content cbs-clear-fix">
+        <ul class="cbs-booking-summary cbs-list-reset cbs-clear-fix">
+        <li class="cbs-booking-summary-date">
+                <div class="cbs-meta-icon cbs-meta-icon-date"></div>
+ 
+                <span>Your Selected Car Type</span>
+                <h5>
+                    <span></span>
+                    <div id="cartype">
+                    
+                </h5>
+            </li>
+            <li class="cbs-booking-summary-date">
+                <div class="cbs-meta-icon cbs-meta-icon-date"></div>
+ 
+                <span>Your basic price for selected car type</span>
+                <h5>
+                    <span></span>
+                    <div id="price">
+                    <span></span></div>
+                </h5>
+            </li>
+            <li class="cbs-booking-summary-date">
+                <div class="cbs-meta-icon cbs-meta-icon-date"></div> <span>Your Selected Wash type</span>
+              <h5>
+                <span></span>
+                    <div id="washtype">
+                    <span><?php if(isset($wash_name)){echo $wash_name;} ?></span></div>
+                </h5>
+            </li>
+            <li class="cbs-booking-summary-date">
+                <div class="cbs-meta-icon cbs-meta-icon-date"></div>
+ 
+                <span>Your basic price for selected wash type</span>
+                <h5>
+                    <span></span>
+                    <div id="washprice">
+                    
+                </h5>
+            </li>
+            <li class="cbs-booking-summary-date">
+                <div class="cbs-meta-icon cbs-meta-icon-date"></div>
+               
+                <span>Your Appointment Date</span>
+               <h5> <div id="slotdate">
+                    <span></span></div>
+                </h5>
+            </li>
+            <li class="cbs-booking-summary-time">
+                <div class="cbs-meta-icon cbs-meta-icon-time"></div>
+                <span></span>
+                   
+                <span>Your Appointment Time</span>
+                <h5> <div id="slottype">
+                    <span></span></div>
+                </h5>
+            </li>
+            <li class="cbs-booking-summary-time">
+                <div class="cbs-meta-icon cbs-meta-icon-time"></div>
+                <span></span>
+                   
+                <span> time Duration for the wash process</span>
+                <h5> <div id="washduration">
+                    <span></span></div>
+                </h5>
+            </li>
+            <li class="cbs-booking-summary-time">
+                <div class="cbs-meta-icon cbs-meta-icon-time"></div>
+                <span></span>
+                   
+                <span> T<h1>total Price</span>
+                <h5> <div id="totalamount"></h1>
+                    <span></span></div>
+                </h5>
+            </li>
+            <li class="cbs-booking-summary-time">
+                <div class="cbs-meta-icon cbs-meta-icon-time"></div>
+                <span></span>
+                   
+                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Confirm booking</button>
+            </li>
+            <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+         <div class="modal-content">
+         <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h5 class="modal-title">Please enter your vehicle registration number</h5>
+         </div>
+              <div class="modal-body">
+        
+                  <form action="savebookingaswathy.php" method="POST" enctype="multipart/form-data">
+                   Registration Number<input type = "text" name="regno" required><br>
+                 
+                  <input type="submit" class="button" value="save" name="addcategory">
+                 </form>
+             </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+        </div>
+        </div>
+  </div>
+</div>
+           
+          
+          
+
+           
+
             
+
+           </ul>
+    </div>
+</li>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+$(document).ready(function() {
+    $("#btnbooking").click(function(){
+        alert("button");
+    }); 
+});
+</script>
+<script>
+    var links = document.querySelectorAll('.setcartype');
+    links.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            links.forEach(function (link) {
+                link.classList.remove('selected');
+            });
+
+            this.classList.add('selected');
+            var id = this.getAttribute('data-id');
+
+            $.ajax({
+                url: "setcarSession.php",
+                data: { cartypeID: id },
+                success: function(data){
+                
+                    // Update the displayed session value without refreshing
+                    $('#cartype').html(data);
+                }
+            });
+
+
+            $.ajax({
+                url: "setprice.php",
+                data: { cartypeID: id },
+                success: function(data) {
+                
+                    // Update the displayed session value without refreshing
+                    $('#price').html(data);
+                }
+            });
+            $.ajax({
+                url: "settotal.php",
+                data: { cartypeID: id },
+                success: function(data) {
+                
+                    // Update the displayed session value without refreshing
+                    $('#totalamount').html(data);
+                }
+            });
+
+
+        });
+    });
+
+    var washLinks = document.querySelectorAll('.setwashtype');
+    washLinks.forEach(function(link) {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            washLinks.forEach(function (link) {
+                link.classList.remove('selected');
+            });
+
+            this.classList.add('selected');
+            var id = this.getAttribute('data-id');
+          
+            $.ajax({
+                url: "setwashSession.php",
+                data: { washtypeID: id },
+                success: function(data) {
+                    //console.log(data);
+                    // Update the displayed session value without refreshing
+                    $('#washtype').html(data);
+                }
+            });
+            $.ajax({
+                url: "setwashduration.php",
+                data: { washtypeID: id },
+                success: function(data) {
+                    //console.log(data);
+                    // Update the displayed session value without refreshing
+                    $('#washduration').html(data);
+                }
+            });
+            $.ajax({
+                url: "setwashprice.php",
+                data: { washtypeID: id },
+                success: function(data) {
+                    //console.log(data);
+                    // Update the displayed session value without refreshing
+                    $('#washprice').html(data);
+                }
+            });
+
+            $.ajax({
+                url: "settotal2.php",
+                data: { washtypeID: id },
+                success: function(data) {
+                    //console.log(data);
+                    // Update the displayed session value without refreshing
+                    $('#totalamount').html(data);
+                }
+            });
+        });
+    });
+</script>
+
+<!-- Rest of your JavaScript code remains the same -->
+
+<script>
+  var links = document.querySelectorAll('.setslottype');
+  links.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault(); // Prevent the link from navigating
+
+      var id = this.getAttribute('data-id');
+      var bookdate = this.getAttribute('data-bookdate');
+      alert(bookdate); //
+   
+      
+      // Use AJAX to send a request to setcarSession.php with the ID parameter
+      $.ajax({
+        url: "setslotSession.php",
+        data: { slottypeID: id,bookDate:bookdate }, // Send the ID to the server
+        success: function(data) {
+          // The session variable is set on the server; you can handle the response if needed.
+          // For example, you can update the UI to reflect that the session value has been set.
+          $('#slottype').html(data); // Log the response from the server
+        }
+      });
+      $.ajax({
+        url: "setslotdate.php",
+        data: { slottypeID: id,bookDate:bookdate }, // Send the ID to the server
+        success: function(data) {
+          // The session variable is set on the server; you can handle the response if needed.
+          // For example, you can update the UI to reflect that the session value has been set.
+          $('#slotdate').html(data); // Log the response from the server
+        }
+      });
+    });
+  });
+</script>
+<script>
+    // Get references to the link and the div
+    var showLink = document.getElementById("showDiv");
+    var divToShow = document.getElementById("myDiv");
+
+    // Add a click event listener to the link
+    showLink.addEventListener("click", function (e) {
+        e.preventDefault(); // Prevent the default link behavior
+
+        // Toggle the visibility of the div
+        if (divToShow.style.display === "none") {
+            divToShow.style.display = "block";
+            var carhiddenFieldValue = document.getElementById('cartypeValue').value;
+            var outputDiv = document.getElementById('outputDiv');
+            outputDiv.innerHTML = "The value of the hidden field is: " + carhiddenFieldValue;
+    
+
+           
+        } else {
+            
+            divToShow.style.display = "none";
+        }
+    });
+</script>
+
+
+
+
+
+
+                   
 
 <!--minu.....-->
 
      
                     <?php
-        }
+        
                 ?>
     
-    </div></div>
+    
      
         
         

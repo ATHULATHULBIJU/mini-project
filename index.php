@@ -101,7 +101,7 @@ include("connection.php");
                         <a href="signup.php" class="nav-item nav-link">Service</a>
                         <a href="signup.php" class="nav-item nav-link">Package</a>
                         <a href="signup.php" class="nav-item nav-link">Washing Points</a>
-                        <div class="nav-item dropdown">
+                        <!--<div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu">
                                 <a href="signup.php" class="dropdown-item">Blog Grid</a>
@@ -109,7 +109,7 @@ include("connection.php");
                                 <a href="signup.php" class="dropdown-item">Team Member</a>
                                 <a href="signup.php" class="dropdown-item">Schedule Booking</a>
                             </div>
-                        </div>
+                        </div>-->
                         <a href="signup.php" class="nav-item nav-link">Contact</a>
                     </div>
                     <div class="ml-auto">
@@ -221,7 +221,7 @@ include("connection.php");
         <div class="container">
             <div class="section-header text-center">
                 <p>What We Do?</p>
-                <h2>Premium Washing Services</h2>
+                <h2> Washing Services</h2>
             </div>
             <div class="row">
                 <div class="col-lg-3 col-md-6">
@@ -298,7 +298,7 @@ include("connection.php");
                     <div class="facts-item">
                         <i class="fa fa-map-marker-alt"></i>
                         <div class="facts-text">
-                            <h3 data-toggle="counter-up">25</h3>
+                            <h3 data-toggle="counter-up">2</h3>
                             <p>Service Points</p>
                         </div>
                     </div>
@@ -307,7 +307,7 @@ include("connection.php");
                     <div class="facts-item">
                         <i class="fa fa-user"></i>
                         <div class="facts-text">
-                            <h3 data-toggle="counter-up">350</h3>
+                            <h3 data-toggle="counter-up">3</h3>
                             <p>Engineers & Workers</p>
                         </div>
                     </div>
@@ -316,7 +316,7 @@ include("connection.php");
                     <div class="facts-item">
                         <i class="fa fa-users"></i>
                         <div class="facts-text">
-                            <h3 data-toggle="counter-up">1500</h3>
+                            <h3 data-toggle="counter-up">150</h3>
                             <p>Happy Clients</p>
                         </div>
                     </div>
@@ -325,7 +325,7 @@ include("connection.php");
                     <div class="facts-item">
                         <i class="fa fa-check"></i>
                         <div class="facts-text">
-                            <h3 data-toggle="counter-up">5000</h3>
+                            <h3 data-toggle="counter-up">500</h3>
                             <p>Projects Completed</p>
                         </div>
                     </div>
@@ -437,26 +437,7 @@ include("connection.php");
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="location-item">
-                                <i class="fa fa-map-marker-alt"></i>
-                                <div class="location-text">
-                                    <h3>Car Washing Point</h3>
-                                    <p>piravom, kerala, india</p>
-                                     <p><strong>Call:</strong>46556677676</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="location-item">
-                                <i class="fa fa-map-marker-alt"></i>
-                                <div class="location-text">
-                                    <h3>Car Washing Point</h3>
-                                    <p>piravom, kerala, india</p>
-                                    <p><strong>Call:</strong>+012 345 6789</p>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
                

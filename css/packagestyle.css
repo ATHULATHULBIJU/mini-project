@@ -1,0 +1,84 @@
+.car-card-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* Display 4 columns */
+    gap: 20px; /* Adjust the gap between cards */
+}
+
+.car-card {
+    border: 1px solid #ccc; /* Add a border for each card */
+    padding: 10px;
+}
+/* Example CSS */
+.disabled-date {
+    background-color: #ffcccc !important; /* Background color for disabled dates */
+    color: #ff0000 !important; /* Text color for disabled dates */
+    cursor: not-allowed; /* Optional: Change cursor for disabled dates */
+  }
+  /* Adjust the cell size */
+.datepicker table tr td {
+    width: 60px; /* Set the width of each date cell */
+    height: 60px; /* Set the height of each date cell */
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* Adjust the overall size of the datepicker */
+.datepicker {
+    font-size: 16px; /* Set the font size */
+    width: 400px; /* Set the width of the datepicker */
+}
+
+.cbs-main-list-item {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px;
+    background-color: #f9f9f9;
+}
+
+.cbs-main-list-item-section-header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.cbs-main-list-item-section-header h4 {
+    margin: 0;
+}
+
+.cbs-main-list-item-section-header h5 {
+    font-size: 14px;
+    margin: 0;
+}
+
+.cbs-booking-summary {
+    list-style: none;
+    padding: 0;
+}
+
+.cbs-booking-summary li {
+    padding: 10px 0;
+}
+
+.cbs-meta-icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.cbs-booking-summary h5 {
+    margin: 0;
+}
+
+.cbs-booking-summary span {
+    display: inline-block;
+}
+
+
+
+  

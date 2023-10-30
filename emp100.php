@@ -1,41 +1,59 @@
 <?php
-$dbhost='localhost';
-$dbuser='root';
-$dbpass='';
-$db='demo';
-if(isset($_POST['add'])){
-$conn=mysqli_connect($dbhost,$dbuser,$dbpass,$db);
-if($conn->connect_error){
-die("connection failed:".$conn->connect_error);
+$servername = "localhost";
+$username = "your_username";
+$password = "your_password";
+$database = "your_database_name";
 
-}
-echo"connected successfully"."<br>";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
 
-$emp_name=$_POST['emp_name'];
-$emp_address=$_POST['emp_address'];
-$emp_salary=$_POST['emp_salary'];
-$Sql="INSERT INTO emp200(emp_name,emp_address,emp_salary)VALUES('$emp_name','$emp_address','$emp_salary')";
-if(mysqli_query($conn,$Sql)){
-    echo"new reacord insert successfully";
-
-}else{
-    echo"error:".$Sql."<br>".mysqli_error($conn);
-    mysqli_close($conn);
-}
-
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 ?>
+
+
+
+
+<!DOCTYPE html>
 <html>
-    <head>
-        <title>add new record record in mysqli</title>
+<head>
+    <title>Admin - View Customers</title>
+    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-    <form action="<?php echo($_SERVER["PHP_SELF"])?>" method="post">
-    Employee Name:<input name="emp_name"type=text id="emp_name"><br><br>
-    Employee address:<input name="emp_address"type=text id="emp_address"><br><br>
-    Employee salary:<input name="emp_salary"type=text id="emp_salary"><br><br>
-    <input name="add"type="submit" id="add" value="add employee">
-</form>
+    <?php include('admin.html'); ?>
+    <div id="content">
+        <h1>Customer List</h1>
+        <label for="datepicker">Select a Date:</label>
+        <input type="date" id="datepicker">
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone number</th>
+            </tr>
+            <?php
+            include_once('connection.php');
+            $query = "SELECT * FROM tbl_customers";
+            $result = $conn->query($query);
 
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<td>" . $row["c_id"] . "</td>";
+                    echo "<td>" . $row["c_username"] . "</td>";
+                    echo "<td>" . $row["email"] . "</td>";
+                    echo "<td>" . $row["c_phone"] . "</td>";
+                    echo "</tr>";
+                }
+            } else {
+                echo "<tr><td colspan='4'>No customers found.</td></tr>";
+            }
+            ?>
+        </table>
+    </div>
 </body>
 </html>

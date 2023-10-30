@@ -7,19 +7,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $price = $_POST['price'];
     $duration = $_POST['duration'];
-
+    $allow = array("jpg", "jpeg", "gif", "png");
     // Check if a new image file is uploaded
-    if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
-        $image_name = $_FILES['image']['name'];
-        $image_temp = $_FILES['image']['tmp_name'];
+    $todir = 'image/';
 
-        // Move the uploaded file to the desired location
-        move_uploaded_file($image_temp, 'uploadimage/' . $image_name);
+    $image_name = $_FILES['image']['name']; // Get the uploaded image's name
 
-        // Update the image field in the database with the new image name
-        $sql = "UPDATE tbl_type SET name='$name', price='$price', duration='$duration', image='$image_name' WHERE t_id='$t_id'";
+    if (!empty($image_name)) { // Check if an image was uploaded
+        $info = pathinfo($image_name); // Get file extension
+        $file_extension = strtolower($info['extension']);
+
+        if (in_array($file_extension, $allow)) {
+            $image_path = $todir . $image_name;
+            if (move_uploaded_file($_FILES['image']['tmp_name'], $image_path)) {
+                $sql = "UPDATE tbl_type SET name='$name', price='$price', duration='$duration', image='$image_name' WHERE t_id='$t_id'";
+            } else {
+                echo "Error uploading image.";
+            }
+        } else {
+            $sql = "UPDATE tbl_type SET name='$name', price='$price', duration='$duration' WHERE t_id='$t_id'";
+            echo "Error: The file extension is not allowed.";
+        }
     } else {
-        // If no new image is uploaded, update other fields without changing the image
         $sql = "UPDATE tbl_type SET name='$name', price='$price', duration='$duration' WHERE t_id='$t_id'";
     }
 

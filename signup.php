@@ -81,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
  
   
        echo 'hooo';
-        if ($password == $_POST['confpassword'] and $flag==1 ) {
+        if ($password == $_POST['confpassword'] ) {
             $sql = "INSERT INTO tbl_customers (c_username,email,c_password,c_phone) VALUES ('$name', '$Email', '$password','$phonenumber')";
             $result=mysqli_query($conn,$sql);
             session_start();
@@ -89,6 +89,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST")
             $_SESSION['customername']=$name;
             $type="customer";
             $sql ="insert into tbl_login (email,password,usertype) values ('$Email','$password','$type')";
+            //email senting code
+            require 'vendor/autoload.php';
+    //Create an instance; passing `true` enables exceptions
+    $mail = new PHPMailer\PHPMailer\PHPMailer();
+    
+    // Use SMT
+    $mail->isSMTP();
+    
+    // SMTP settings
+    $mail->SMTPDebug = 3;
+    $mail->Host = 'smtp.gmail.com';
+    $mail->Port = 587;
+    $mail->SMTPSecure = 'tls';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'athulbijuupm03@gmail.com';
+    $mail->Password = 'upil hknz xnao lwzm';                 
+    
+    // Set 'from' email address and name
+    $mail->setFrom('athulbijuupm03@gmail.com', 'Athul Biju');
+    
+    // Add a recipient email address
+    $mail->addAddress($Email);
+    
+    // Email subject and body
+    $mail->Subject = 'AutoWash car washing center';
+    $mail->Body = 'REgistration successfullllllllllllllllllllll';
+    
+    // Send email
+    if (!$mail->send()) {
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
+        echo 'Message sent!';
+    }
             $result=mysqli_query($conn,$sql);
             header("location:customerdashboard.php");
             
