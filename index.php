@@ -8,7 +8,6 @@ include("connection.php");
 
 <head>
     <meta charset="utf-8">
-    <title>AutoWash - Car Wash Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
@@ -38,8 +37,8 @@ include("connection.php");
                 <div class="col-lg-4 col-md-12">
                     <div class="logo">
                         <a href="index.html">
-                            <h1>Auto<span>Wash</span></h1>
-                            <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                        <h1>AUTO<span>Wash</span></h1>
+                           <!-- <img src="img/logo.jpg" alt="Logo"> -->
                         </a>
                     </div>
                 </div>
@@ -52,7 +51,7 @@ include("connection.php");
                                 </div>
                                 <div class="top-bar-text">
                                     <h3>Opening Hour</h3>
-                                    <p>Mon - Fri, 8:00 - 9:00</p>
+                                    <p>Mon - Fri, 9:00 - 8:00</p>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +73,7 @@ include("connection.php");
                                 </div>
                                 <div class="top-bar-text">
                                     <h3>Email Us</h3>
-                                    <p>info@example.com</p>
+                                    <p>autowash@example.com</p>
                                 </div>
                             </div>
                         </div>
@@ -149,7 +148,7 @@ include("connection.php");
                         <p>
                         
                         </p>
-                        <a class="btn btn-custom" href="">Explore More</a>
+                        
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -162,7 +161,7 @@ include("connection.php");
                         <p>
                            
                         </p>
-                        <a class="btn btn-custom" href="">Explore More</a>
+                        <a class="btn btn-custom" href=""></a>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -174,7 +173,7 @@ include("connection.php");
                         <h1>Exterior & Interior Washing</h1>
                         <p>
                                                   </p>
-                        <a class="btn btn-custom" href="">Explore More</a>
+                        
                     </div>
                 </div>
             </div>
@@ -207,7 +206,7 @@ include("connection.php");
                             <li><i class="far fa-check-circle"></i>Interior wet cleaning</li>
                             <li><i class="far fa-check-circle"></i>Window wiping</li>
                         </ul>
-                        <a class="btn btn-custom" href="">Learn More</a>
+                        
                     </div>
                 </div>
             </div>
@@ -348,7 +347,7 @@ include("connection.php");
                     <div class="price-item">
                         <div class="price-header">
                             <h3>Basic Cleaning</h3>
-                            <h2><span>Rs</span><strong>2500</strong><span></span></h2>
+                            <h2><span></span><strong></strong><span></span></h2>
                         </div>
                         <div class="price-body">
                             <ul>
@@ -367,7 +366,7 @@ include("connection.php");
                     <div class="price-item featured-item">
                         <div class="price-header">
                             <h3>Premium Cleaning</h3>
-                            <h2><span>Rs</span><strong>3500</strong><span></span></h2>
+                            <h2><span></span><strong></strong><span></span></h2>
                         </div>
                         <div class="price-body">
                             <ul>
@@ -386,7 +385,7 @@ include("connection.php");
                     <div class="price-item">
                         <div class="price-header">
                             <h3>Complex Cleaning</h3>
-                            <h2><span>Rs</span><strong>4900</strong><span></span></h2>
+                            <h2><span></span><strong></strong><span></span></h2>
                         </div>
                         <div class="price-body">
                             <ul>

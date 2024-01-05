@@ -10,7 +10,7 @@ $result=mysqli_query($conn,$sql);
 $row=mysqli_fetch_array($result);
 $caramount=$row['addpay'];
 
-if($_SESSION['washprice']!=0){
+if(isset($_SESSION['washprice'])!=0){
     $total=$caramount+$_SESSION['washprice'];
 }
 else{

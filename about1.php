@@ -1,8 +1,12 @@
+<?php
+session_start();
+include("connection.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>AutoWash - Car Wash Website Template</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free Website Template" name="keywords">
         <meta content="Free Website Template" name="description">
@@ -32,8 +36,8 @@
                     <div class="col-lg-4 col-md-12">
                         <div class="logo">
                             <a href="index.php">
-                                <h1>Auto<span>Wash</span></h1>
-                                <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                            <h1>AUTO<span>Wash</span></h1>
+                         <!-- <img src="img/logo.jpg" alt="Logo"> -->
                             </a>
                         </div>
                     </div>
@@ -93,7 +97,7 @@
                             <a href="customerdashboard.php" class="nav-item nav-link">Home</a>
                             <a href="about1.php" class="nav-item nav-link active">About</a>
                             <a href="service.php" class="nav-item nav-link">Service</a>
-                            <a href="package.php" class="nav-item nav-link">Price</a>
+                            <a href="package.php" class="nav-item nav-link">Package</a>
                             <a href="location.php" class="nav-item nav-link">Washing Points</a>
                             <!--<div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
@@ -107,7 +111,8 @@
                             <a href="contact.php" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="ml-auto">
-                            <a class="btn btn-custom" href="booking.php">Booking</a>
+                        
+                            <a class="btn btn-custom" href="User.php"><?php echo $_SESSION['customername'] ; ?></a>
                         </div>
                     </div>
                 </nav>
@@ -156,7 +161,6 @@
                                 <li><i class="far fa-check-circle"></i>Interior wet cleaning</li>
                                 <li><i class="far fa-check-circle"></i>Window wiping</li>
                             </ul>
-                            <a class="btn btn-custom" href="">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -228,11 +232,7 @@
                                 <h2>Hatchback</h2>
                                 <p>5 seater</p>
                                 <div class="team-social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
-                                </div>
+                                   </div>
                             </div>
                         </div>
                     </div>
@@ -245,11 +245,7 @@
                                 <h2>sedan</h2>
                                 <p>5 seater</p>
                                 <div class="team-social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
-                                </div>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -262,10 +258,6 @@
                                 <h2>suv</h2>
                                 <p>7 seater</p>
                                 <div class="team-social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -279,10 +271,6 @@
                                 <h2>muv</h2>
                                 <p>7 seater</p>
                                 <div class="team-social">
-                                    <a href=""><i class="fab fa-twitter"></i></a>
-                                    <a href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a href=""><i class="fab fa-instagram"></i></a>
                                 </div>
                             </div>
                         </div>

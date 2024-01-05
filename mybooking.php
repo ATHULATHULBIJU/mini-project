@@ -1,7 +1,3 @@
-<?php
-session_start();
-include ('connection.php');
-?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -27,65 +23,7 @@ include ('connection.php');
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
     </head>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 20px;
-        }
 
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        .booking-details {
-            background-color: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-
-        .booking-details p {
-            margin: 5px 0;
-        }
-        
-    .booking-details {
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin-bottom: 10px;
-    }
-    
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    
-
-
-
-    /* You can further style as needed for other classes */
-
-
-    /* Add more styling as needed for other classes */
-
- 
-    </style>
     <body>
         <!-- Top Bar Start -->
         <div class="top-bar">
@@ -108,7 +46,7 @@ include ('connection.php');
                                     </div>
                                     <div class="top-bar-text">
                                         <h3>Opening Hour</h3>
-                                        <p>Mon - Fri, 8:00 - 9:00</p>
+                                        <p>Mon - Fri 9:00 - 8:00</p>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +68,7 @@ include ('connection.php');
                                     </div>
                                     <div class="top-bar-text">
                                         <h3>Email Us</h3>
-                                        <p>info@example.com</p>
+                                        <p>autowash@example.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -175,80 +113,107 @@ include ('connection.php');
                 </nav>
             </div>
         </div>
-
-<h1>Washtype</h1>
-<?php
-$custid=$_SESSION['customerid'];
-echo $custid;
-$sql = "SELECT b.*,c.*, t.*, car.*, slot.*
-        FROM booking b 
-        JOIN tbl_customers c ON b.cust_id = c.c_id
-        JOIN tbl_car car ON b.car_id = car.car_id
-        JOIN tbl_slots slot ON b.slot_id = slot.slot_id
-        JOIN tbl_type t ON b.wash_id = t.t_id
-        WHERE b.cust_id = '" . $custid . "'";
-
-//$sql="select * from booking where cust_id='".$custid."'";
-$result=mysqli_query($conn,$sql);?>
-<table class="table">
-    <tr>
-        <th>Username</th>
-        <th>Email</th>
-        <th>Start</th>
-        <th>End</th>
-        <th>Booking Date</th>
-        <th>Wash Type</th>
-        <th>Car Type</th>
-        <th>Duration</th>
-    </tr>
-<?php
- 
-while ($row=mysqli_fetch_array($result)){
-    echo "<tr>";
-    
-    echo "<td>".$row['c_username']."</td>" ; 
-    
-
-    echo "<td>".$row['email']."</td>" ;
-    
-
-    echo "<td>".$row['start']."</td>" ;
-    
-
-    echo "<td>".$row['end']."</td>" ;
-    
-
-    echo "<td>".$row['bookdate']."</td>" ;
-    
-
-    echo "<td>".$row['name']."</td>" ;
-    
-
-    echo "<td>".$row['type']."</td>" ;
-    
-
-    echo "<td>".$row['duration']."</td>" ;
-    
-    echo "</tr>";
-}
-
-    ?>
-
-</table>
+        <!-- Nav Bar End -->
+        
+        
+      
+        <div class="fashion_section">
+  <main id="main" class="main">
+    <div class="banner_taital">
+                   
+      <h1>Your Account</h1>
+      <nav>
+       <!-- End Page Title -->
+ <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="customerdashboard.php">Home</a></li>
+          <li class="breadcrumb-item"><a href="User.php">Your Account</a></li>
+              
+        </ol>
+      </nav>
+    </div>
+    <section class="section dashboard">
+      <div class="row">
 
 
+        <!-- Team Start -->
+       
+            <!-- Team Start -->
+<!-- Team Start -->
+<div class="team">
+    <div class="container">
+        <div class="row">
+            <!-- Your Order Card -->
+            <div class="col-lg-3 col-md-6">
+                <div class="team-item">
+                    <div class="team-img">
+                        <img src="img/cntype.png" alt="Your Order Logo">
+                    </div>
+                    <div class="team-text"><a href="mytypebooking.php">
+                        <h2>type Booking</h2></a>
+                        <p>type Booking.</p>
+                    </div>
+                </div>
+            </div>
 
-<?php
+            <!-- Edit Profile Card -->
+            <div class="col-lg-3 col-md-6">
+                <div class="team-item">
+                    <div class="team-img">
+                        <img src="img/cnpackage.png" alt="Edit Profile Logo">
+                    </div>
+                    <div class="team-text">       
+                      <a href="mypkgbook.php">
+                   
+                        <h2>package</h2>
+                        <p>Booking packages.</p>
+                    </div>
+                </div>
+            </div>
 
-?>
-<h1>Packages</h1>
-<?php
-//$sql="select * from packagebooking where cust_id='".$custid."'";
-//$result=mysqli_query($conn,$sql);
-//while ($row=mysqli_fetch_array($result)){
-    ?>
+            <!-- Contact Us Card -->
+           
+            <!-- Password Change Card -->
+            
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+
+<!-- Team End -->
+      
 
 
 
 
+        
+        <!-- Team End -->
 
+
+        <!-- Footer Start -->
+        
+        <!-- Footer End -->
+        
+        <!-- Back to top button -->
+        <a href="#" class=""><i class=""></i></a>
+        
+        <!-- Pre Loader -->
+        <div id="loader" class="show">
+            <div class="loader"></div>
+        </div>
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="lib/waypoints/waypoints.min.js"></script>
+        <script src="lib/counterup/counterup.min.js"></script>
+        
+        <!-- Contact Javascript File -->
+        <script src="mail/jqBootstrapValidation.min.js"></script>
+        <script src="mail/contact.js"></script>
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+    </body>
+</html>

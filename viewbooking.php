@@ -112,7 +112,7 @@ input[type="file"] {
    <?php
     include('admin.html');
     ?>
-  <main class="main auto-height" style="background-image:url('img/car-wash-detailing-station.jpg');">
+  <main class="main auto-height" >
   <div class="control-group">
                                 <?php echo ""?>
                                     <input type="date" id="bookingdate" name="bookingdate" class="form-control" placeholder="date" required="required" />

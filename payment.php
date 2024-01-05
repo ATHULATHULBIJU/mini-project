@@ -1,7 +1,10 @@
 <?php
 session_start();
 include('connection.php');
-$total=isset($_GET['totalamount']);
+$total=$_SESSION['totamount']*10/100;
+$pending=$_SESSION['totamount']-$total;
+
+$_SESSION['vehicleno']=$_POST['regno'];
 
 ?>
 
@@ -549,6 +552,7 @@ body {
 .card-input_input:hover, .card-input_input:focus {
   border-color: #3d9cff;
 }
+
 .card-input__input:focus {
   box-shadow: 0px 10px 20px -13px rgba(32, 56, 117, 0.35);
 }
@@ -748,27 +752,27 @@ body {
           </div>
         </div>
       </div>
-      <form action="" method="post">
+      <form action="savepackagebooking.php" method="post">
         <div class="card-form__inner">
           <div class="card-input">
             <label for="cardNumber" class="card-input__label">Card Number</label>
-            <input type="text" id="cardNumber" class="card-input__input" v-mask="generateCardNumberMask" v-model="cardNumber" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardNumber" autocomplete="off" required />
+            <input type="text" id="cardNumber"  name="cardNumber" class="card-input__input" v-mask="generateCardNumberMask" v-model="cardNumber" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardNumber" autocomplete="off" required />
           </div>
           <div class="card-input">
             <label for="cardName" class="card-input__label">Card Holders</label>
-            <input type="text" id="cardName" class="card-input__input" v-model="cardName" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardName" autocomplete="off" required />
+            <input type="text" id="cardName"name="cardName" class="card-input__input" v-model="cardName" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardName" autocomplete="off" required />
           </div>
           <div class="card-form__row">
             <div class="card-form__col">
               <div class="card-form__group">
                 <label for="cardMonth" class="card-input__label">Expiration Date</label>
-                <select class="card-input__input -select" id="cardMonth" v-model="cardMonth" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate" required>
+                <select class="card-input__input -select" id="cardMonth" name="cardMonth" v-model="cardMonth" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate" required>
                   <option value="" disabled selected>Month</option>
                   <option v-bind:value="n < 10 ? '0' + n : n" v-for="n in 12" v-bind:disabled="n < minCardMonth" v-bind:key="n">
                     {{n < 10 ? '0' + n : n}}
                   </option>
                 </select>
-                <select class="card-input__input -select" id="cardYear" v-model="cardYear" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate" required>
+                <select class="card-input__input -select" id="cardYear" name="cardYear"v-model="cardYear" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate" required>
                   <option value="" disabled selected>Year</option>
                   <option v-bind:value="$index + minCardYear" v-for="(n, $index) in 12" v-bind:key="n">
                     {{$index + minCardYear}}
@@ -779,12 +783,12 @@ body {
             <div class="card-form__col -cvv">
               <div class="card-input">
                 <label for="cardCvv" class="card-input__label">CVV</label>
-                <input type="text" class="card-input__input" id="cardCvv" v-mask="'####'" maxlength="3" v-model="cardCvv" v-on:focus="flipCard(true)" v-on:blur="flipCard(false)" autocomplete="off" required />
+                <input type="text" class="card-input__input" id="cardCvv" name="cardCvv" v-mask="'####'" maxlength="3" v-model="cardCvv" v-on:focus="flipCard(true)" v-on:blur="flipCard(false)" autocomplete="off" required />
               </div>
             </div>
           </div>
           <button class="card-form__button" type="submit" name="payNow">&#8377;
-            <?php echo $_GET['totalamount']; ?>  
+            <?php echo $total; ?>  
           </button>
         </div>
       </form>

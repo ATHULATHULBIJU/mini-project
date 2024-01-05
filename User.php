@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="top-bar-text">
                                         <h3>Opening Hour</h3>
-                                        <p>Mon - Fri, 8:00 - 9:00</p>
+                                        <p>Mon - Fri, 9:00 - 8:00</p>
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +68,7 @@
                                     </div>
                                     <div class="top-bar-text">
                                         <h3>Email Us</h3>
-                                        <p>info@example.com</p>
+                                        <p>autowash@example.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -106,6 +106,7 @@
                             </div>
                             <a href="contact.php" class="nav-item nav-link"></a>
                         </div>
+                        
                         <div class="ml-auto">
                            
                         </div>

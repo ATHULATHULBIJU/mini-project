@@ -199,7 +199,7 @@ $conn->close();
        <!-- End Page Title -->
  <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="customerdashboard.php">Home</a></li>
-          <li class="breadcrumb-item active"> <a href="User.php">Your Account</li>
+          <li class="breadcrumb-item active"> <a href="User.php">Your Account</a></li>
         </ol>
       </nav>
     </div>

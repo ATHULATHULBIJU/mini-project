@@ -36,8 +36,8 @@ include("connection.php");
                 <div class="col-lg-4 col-md-12">
                     <div class="logo">
                         <a href="index.html">
-                            <h1>Auto<span>Wash</span></h1>
-                            <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                        <h1>AUTO<span>Wash</span></h1>
+                             <!-- <img src="img/logo.jpg" alt="Logo"> -->
                         </a>
                     </div>
                 </div>
@@ -50,7 +50,7 @@ include("connection.php");
                                 </div>
                                 <div class="top-bar-text">
                                     <h3>Opening Hour</h3>
-                                    <p>Mon - Fri, 8:00 - 9:00</p>
+                                    <p>Mon - Fri, 9:00 - 8:00</p>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +72,7 @@ include("connection.php");
                                 </div>
                                 <div class="top-bar-text">
                                     <h3>Email Us</h3>
-                                    <p>info@example.com</p>
+                                    <p>autowash@example.com</p>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,10 @@ include("connection.php");
                     <?php if(isset($_SESSION['customername'])){ ?>
                         <div class="nav-item dropdown" style="color:#fff;">
                         
-                            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" style="color:#fff;">YOU</a>
+                            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" style="color:#fff;">
+                            <img src="img/person.png" alt="icon" class="icon" style="width:20px;height:20px;">
+
+                        </a>
                             <div class="dropdown-menu">
                                 
                                 <a href="User.php" class="dropdown-item"><?php echo $_SESSION['customername'] ; ?></a>
@@ -150,8 +153,7 @@ include("connection.php");
                         <p>
                             
                         </p>
-                        <a class="btn btn-custom" href="">Explore More</a>
-                    </div>
+                         </div>
                 </div>
                 <div class="carousel-item">
                     <div class="carousel-img">
@@ -163,7 +165,6 @@ include("connection.php");
                         <p>
                            
                         </p>
-                        <a class="btn btn-custom" href="">Explore More</a>
                     </div>
                 </div>
                 <div class="carousel-item">
@@ -176,7 +177,6 @@ include("connection.php");
                         <p>
                            
                         </p>
-                        <a class="btn btn-custom" href="">Explore More</a>
                     </div>
                 </div>
             </div>
@@ -208,7 +208,6 @@ include("connection.php");
                             <li><i class="far fa-check-circle"></i>Interior wet cleaning</li>
                             <li><i class="far fa-check-circle"></i>Window wiping</li>
                         </ul>
-                        <a class="btn btn-custom" href="">Learn More</a>
                     </div>
                 </div>
             </div>
@@ -345,7 +344,7 @@ include("connection.php");
                     <div class="price-item">
                         <div class="price-header">
                             <h3>Basic Cleaning</h3>
-                            <h2><span>Rs</span><strong>2500</strong><span></span></h2>
+                            <h2><span></span><strong></strong><span></span></h2>
                         </div>
                         <div class="price-body">
                             <ul>
@@ -357,15 +356,14 @@ include("connection.php");
                             </ul>
                         </div>
                         <div class="price-footer">
-                            <a class="" href=""></a>
-                        </div>
+                        <a class="btn btn-custom" href="package.php">book</a></div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="price-item featured-item">
                         <div class="price-header">
                             <h3>Premium Cleaning</h3>
-                            <h2><span>Rs</span><strong>3500</strong><span></span></h2>
+                            <h2><span></span><strong></strong><span></span></h2>
                         </div>
                         <div class="price-body">
                             <ul>
@@ -377,15 +375,14 @@ include("connection.php");
                             </ul>
                         </div>
                         <div class="price-footer">
-                            <a class="" href="pbooking.php"></a>
-                        </div>
+                        <a class="btn btn-custom" href="package.php">book</a>  </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="price-item">
                         <div class="price-header">
                             <h3>Complex Cleaning</h3>
-                            <h2><span>Rs</span><strong>4900</strong><span></span></h2>
+                            <h2><span></span><strong></strong><span></span></h2>
                         </div>
                         <div class="price-body">
                             <ul>
@@ -397,7 +394,7 @@ include("connection.php");
                             </ul>
                         </div>
                         <div class="price-footer">
-                            <a class="" href=""></a>
+                            <a class="btn btn-custom" href="package.php">book</a>
                         </div>
                     </div>
                 </div>
@@ -494,12 +491,10 @@ include("connection.php");
                 <div class="testimonial-item">
                     <img src="img/unknown.png" alt="Image">
                     <div class="testimonial-text">
-                        <h3>Client Name</h3>
-                        <h4>Profession</h4>
+                        <h3>  <?php echo $row['c_username']; ?></h3>
                         
-                        <p class="card-text">Name: <?php echo $row['c_username']; ?></p>             
-                            <p class="card-text">subject: <?php echo $row['subject']; ?></p>
-                            <p class="card-text">message: <?php echo $row['message']; ?></p>
+                            <p class="card-text">rating: <?php echo $row['subject']; ?></p>
+                            <p class="card-text">Description: <?php echo $row['message']; ?></p>
                             
                         
                     </div>
@@ -539,12 +534,7 @@ include("connection.php");
 
 </p>
                         </div>
-                        <div class="blog-meta">
-                            <p><i class="fa fa-user"></i><a href="">Admin</a></p>
-                            <p><i class="fa fa-folder"></i><a href="">Web Design</a></p>
-                            <p><i class="fa fa-comments"></i><a href="">15 Comments</a></p>
                         </div>
-                    </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="blog-item">
@@ -562,11 +552,7 @@ include("connection.php");
                             In many cases, trying to remove those more bonded contaminates by simply hand washing your car can lead to swirls and scratches. A snow foam has the benefit of softening and encapsulating dirt and road grime, providing a far safer and easier hand washing result.
  </p>
                         </div>
-                        <div class="blog-meta">
-                            <p><i class="fa fa-user"></i><a href="">Admin</a></p>
-                            <p><i class="fa fa-folder"></i><a href="">Web Design</a></p>
-                            <p><i class="fa fa-comments"></i><a href="">15 Comments</a></p>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -585,11 +571,6 @@ include("connection.php");
                             The beauty of these services is that they don’t cost you a fortune and are quick to avail. Though we switch to cars to make our life easier, but maintaining cars also require a great deal of efforts. You need to pamper your vehicles with service and maintenance like caring your own baby. Shifting to doorstep car service gives your car the same motherly care and affection that you can expect at a professional car service station
 
        </p>
-                        </div>
-                        <div class="blog-meta">
-                            <p><i class="fa fa-user"></i><a href="">Admin</a></p>
-                            <p><i class="fa fa-folder"></i><a href="">Web Design</a></p>
-                            <p><i class="fa fa-comments"></i><a href="">15 Comments</a></p>
                         </div>
                     </div>
                 </div>
@@ -616,26 +597,6 @@ include("connection.php");
                             <a class="btn" href=""><i class="fab fa-instagram"></i></a>
                             <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-link">
-                        <h2>Popular Links</h2>
-                        <a href="">About Us</a>
-                        <a href="">Contact Us</a>
-                        <a href="">Our Service</a>
-                        <a href="">Service Points</a>
-                        <a href="">Pricing Plan</a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="footer-link">
-                        <h2>Useful Links</h2>
-                        <a href="">Terms of use</a>
-                        <a href="">Privacy policy</a>
-                        <a href="">Cookies</a>
-                        <a href="">Help</a>
-                        <a href="">FQAs</a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">

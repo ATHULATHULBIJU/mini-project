@@ -1,5 +1,7 @@
 
 <?php
+session_start();
+
 include_once('connection.php');
 $_SESSION['carprice']=0;
 $_SESSION['packageprice']=0;
@@ -7,7 +9,6 @@ $_SESSION['packageprice']=0;
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>AutoWash - Car Wash Website Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="Free Website Template" name="keywords">
     <meta content="Free Website Template" name="description">
@@ -25,6 +26,25 @@ $_SESSION['packageprice']=0;
     <!-- Template Stylesheets -->
     <link href="css/style.css" rel="stylesheet">
     <link href="css/packagestyle.css" rel="stylesheet">
+    <style>
+    /* Apply styles when hovering over the card */
+.car-card:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transform: scale(1.02); /* Scale up the card slightly on hover */
+}
+
+/* Apply styles when the card is clicked or selected */
+.car-card:active {
+  background-color: #007BFF; /* Change the background color on click */
+  color: #fff; /* Change text color on click */
+}
+
+/* Optionally, apply styles for selected cards that are not active (clicked) */
+.car-card.selected {
+  background-color: #007BFF; /* Change the background color for selected cards */
+  color: #fff; /* Change text color for selected cards */
+}
+</style>
      </head>
 
 <body>
@@ -36,8 +56,8 @@ $_SESSION['packageprice']=0;
                     <div class="col-lg-4 col-md-12">
                         <div class="logo">
                             <a href="index.html">
-                                <h1>Auto<span>Wash</span></h1>
-                                <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                            <h1>AUTO<span>Wash</span></h1>
+                          <!-- <img src="img/logo.jpg" alt="Logo"> -->
                             </a>
                         </div>
                     </div>
@@ -95,7 +115,7 @@ $_SESSION['packageprice']=0;
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
                             <a href="customerdashboard.php" class="nav-item nav-link">Home</a>
-                            <a href="about.php" class="nav-item nav-link active">About</a>
+                            <a href="about1.php" class="nav-item nav-link active">About</a>
                             <a href="service.php" class="nav-item nav-link">Service</a>
                             <a href="package.php" class="nav-item nav-link">Package</a>
                             <a href="location.php" class="nav-item nav-link">Washing Points</a>
@@ -111,7 +131,7 @@ $_SESSION['packageprice']=0;
                             <a href="contact1.php" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="ml-auto">
-                            <a class="btn btn-custom" href="packagebooking.php">Booking</a>
+                            <a class="btn btn-custom" href="User.php"><?php echo $_SESSION['customername'] ; ?></a>
                         </div>
                     </div>
                 </nav>
@@ -187,8 +207,8 @@ $_SESSION['packageprice']=0;
             $packageid=$row['p_id'];
            
         ?>
-                    <div class="col-md-4" style="padding:10px;  ">
-                        <div class="price-item featured-item">
+                    <div class="col-md-4" style="padding:10px;">
+                        <div class="price-item featured-item h-100">
                             <div class="price-header">
                                 <h3><?php echo $row['name'];?></h3>
                                 <h2><span>Rs</span><strong><?php echo $row['price'];?></strong><span></span></h2>
@@ -235,18 +255,20 @@ $_SESSION['packageprice']=0;
                 <?php 
 //include('connection.php');
 //echo "jjjjjjjjjjjjjjjjjj";
-$sql = "SELECT bookdate FROM booking";
+$sql = "SELECT pkgbook_date FROM packagebooking";
 $result = mysqli_query($conn, $sql);
 $data = array();
 
 while ($row = mysqli_fetch_array($result)) {
-    $data[] = $row['bookdate'];
+    $data[] = $row['pkgbook_date'];
    // echo $row['bookdate']; echo "<br />";
    // echo $data;// Output the start_date field
 }
 ?>
 <div class="container">
-    <input type="text" name="date" class="form-control datepicker" autocomplete="off" value="Click here for choose day">
+    
+    <input type="text" name="date" class="form-control datepicker" autocomplete="off" value="Click here for choose day" required>
+    
 </div>
 
 
@@ -256,107 +278,122 @@ while ($row = mysqli_fetch_array($result)) {
         
      
 
-<!-- Booking summary -->    <div class="section-header text-center">
-                    
-                    <h2>Booking Summary</h2>
+<!-- Booking summary --> <div class="cbs-main-list-item">
+                    <h4 class="cbs-main-list-item-section-header-header">
+                        Booking Summary
+                    </h4>
+                    <small>Please provide us with your contact information.</small>
                 </div>
-<li class="cbs-main-list-item cbs-clear-fix cbs-main-list-item-booking">
-    <div class="cbs-main-list-item-section-header cbs-clear-fix">
-        <h4 class="cbs-main-list-item-section-header-header">
-            <span>Booking summary</span>
-        </h4>
-        <h5 class="cbs-main-list-item-section-header-subheader">
-            <span>Please provide us with your contact information.</span>
-        </h5>
-    </div>
-    <div class="cbs-main-list-item-section-content cbs-clear-fix">
-        <ul class="cbs-booking-summary cbs-list-reset cbs-clear-fix">
-        <li class="cbs-booking-summary-date">
-                <div class="cbs-meta-icon cbs-meta-icon-date"></div>
- 
-                <span>Your Selected Car Type</span>
-                <h5>
-                    <span></span>
-                    <div id="cartype">
-                    
-                </h5>
+
+                <div class="col-lg-12">
+                    <div>
+                        <div class="d-flex justify-content-between">
+                            <div class="card col-lg-6 my-1 mx-2">
+                                <div>
+                                    <span><i class="bi bi-car-front mr-1"></i>Car Type</span>
+                                    <h5>
+                                        <span></span>
+                                        <div id="cartype">
+                                            <!-- Content for the car type -->
+                                        </div>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="card col-lg-6 my-1 mx-2">
+                                <div>
+                                    <span>Your basic price for selected car type</span>
+                                    <h5>
+                                        <span></span>
+                                        <div id="price">
+                                            <span></span>
+                                        </div>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <div class="card col-lg-6 my-1 mx-2">
+                                <div>
+                                    <span>package choose</span>
+                                    <h5>
+                                        <span></span>
+                                        <div id="packagetype">
+                                            <?php if (isset($wash_name)) {
+                                                echo $wash_name;
+                                            } ?>
+                                        </div>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="card col-lg-6 my-1 mx-2">
+                                <div>
+                                    <span>Your basic price for selected package type</span>
+                                    <h5>
+                                        <span></span>
+                                        <div id="packageprice"></div>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <div class="card col-lg-6 my-1 mx-2">
+                                <div>
+                                    <span><i class="bi bi-calendar mr-1" required></i>Appointment Date</span>
+                                    <h5>
+                                        <div id="packagedate">
+                                            <span></span>
+                                        </div>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="card col-lg-6 my-1 mx-2">
+                                <div>
+                                    <span><i class="bi bi-stopwatch mr-1"></i>Duration</span>
+                                    <h5>
+                                        <div id="washduration">
+                                            <span>1day</span>
+                                        </div>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card col-lg-12 my-1 mx-2">
+                            <div>
+                                <h1 class="d-flex justify-content-between">
+                                    <span><i class="bi bi-cart mr-1"></i>Total Price:</span>
+                                    <span>
+                                        <div id="totalamount"></div>
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
+
+
+
+            
+                <button type="button" id="modalBtn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Enter vehicle number</button>
             </li>
-            <li class="cbs-booking-summary-date">
-                <div class="cbs-meta-icon cbs-meta-icon-date"></div>
- 
-                <span>Your basic price for selected car type</span>
-                <h5>
-                    <span></span>
-                    <div id="price">
-                    <span></span></div>
-                </h5>
-            </li>
-            <li class="cbs-booking-summary-date">
-                <div class="cbs-meta-icon cbs-meta-icon-date"></div> <span>Your Selected Package</span>
-              <h5>
-                <span></span>
-                    <div id="packagetype">
-                    <span><?php if(isset($wash_name)){echo $wash_name;} ?></span></div>
-                </h5>
-            </li>
-            <li class="cbs-booking-summary-date">
-                <div class="cbs-meta-icon cbs-meta-icon-date"></div>
- 
-                <span>Your basic price for selected Package</span>
-                <h5>
-                    <span></span>
-                    <div id="packageprice">
-                    <span></span></div>
-                </h5>
-            </li>
-            <li class="cbs-booking-summary-date">
-                <div class="cbs-meta-icon cbs-meta-icon-date"></div>
-               
-                <span>Your Appointment Date</span>
-               <h5> <div id="packagedate">
-                    <span></span></div>
-                </h5>
-            </li>
-           
-            <li class="cbs-booking-summary-time">
-                <div class="cbs-meta-icon cbs-meta-icon-time"></div>
-                <span></span>
-                   
-                <span> time Duration for the wash process</span>
-                <h5> <div id="washduration">
-                    <span> 1 Day</span></div>
-                </h5>
-            </li>
-            <li class="cbs-booking-summary-time">
-                <div class="cbs-meta-icon cbs-meta-icon-time"></div>
-                <span></span>
-                   
-                <span> T<h1>total Price</span>
-                <h5> <div id="totalamount"></h1>
-                    <span></span></div>
-                </h5>
-            </li>
-            <li class="cbs-booking-summary-time">
-                <div class="cbs-meta-icon cbs-meta-icon-time"></div>
-                <span></span>
-                   
-                <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Confirm booking</button>
-            </li>
+            
             <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
+      <div class="modal-dialog">
     
       <!-- Modal content-->
          <div class="modal-content">
          <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h5 class="modal-title">Please enter your vehicle registration number</h5>
+              <button type="button" class="close ml-1" data-dismiss="modal">&times;</button>
+              <h5 class="modal-title">Please Enter Your Vehicle Registration Number</h5>
          </div>
               <div class="modal-body">
         
-                  <form action="savebookingaswathy.php" method="POST" enctype="multipart/form-data">
-                   Registration Number<input type = "text" name="regno" required><br>
+                  <form action="payment.php" method="POST" enctype="multipart/form-data">
+                  <label class="form-label">Registration Number</label>
+                  <input type = "text" name="regno" class="form-control" required>
+                   <div class="d-flex justify-content-center">
                  
-                  <input type="submit" class="button" value="save" name="addcategory">
+                  <input type="submit" class="btn btn-outline-primary mt-2" value="procced to Advance Pay" name="addcategory">
+                   </div>
                  </form>
              </div>
         <div class="modal-footer">
@@ -365,6 +402,8 @@ while ($row = mysqli_fetch_array($result)) {
         </div>
         </div>
   </div>
+</div>
+</div>
 </div>
 </div>
         <!-- Footer Start -->
@@ -556,36 +595,76 @@ while ($row = mysqli_fetch_array($result)) {
 
 <script>
     $(document).ready(function() {
-        // Datepicker initialization
-        $('.datepicker').datepicker({
-            format: 'yyyy/mm/dd', // Set the desired date format
-            autoclose: true, // Close the datepicker when a date is selected
-            todayHighlight: true // Highlight today's date
-        });
+    // Disable the button initially
+    $('#modalBtn').prop('disabled', true);
+    $('#packagedate').html('<span style="color: red;">Select a date to proceed.</span>');
 
-        // Event handler for date selection
-        $('.datepicker').on('changeDate', function() {
-            alert('Date selected');
-            var selectedDate = $(this).val(); 
+    // Datepicker initialization
+    $('.datepicker').datepicker({
+        format: 'yyyy/mm/dd',
+        autoclose: true,
+        todayHighlight: true
+    });
+
+    // Event handler for date selection
+    $('.datepicker').on('changeDate', function() {
+        var selectedDate = $(this).val();
+
+        // Check if a date is selected
+        if (selectedDate) {
+            // Enable the button
+            $('#modalBtn').prop('disabled', false);
+
+            // Perform AJAX request
             $.ajax({
-    url: "setpackagedate.php",
-    method: "POST", // Explicitly define the method as POST
-    data: { bookdate: selectedDate },
-    success: function(data) {
-        $('#packagedate').html(data);
-    },
-    error: function(xhr, status, error) {
-        console.error("AJAX Error: " + xhr.status + " - " + error); // Log the error to the console
-    }
+                url: "setpackagedate.php",
+                method: "POST",
+                data: { bookdate: selectedDate },
+                success: function(data) {
+                    $('#packagedate').html(data);
+                },
+                error: function(xhr, status, error) {
+                    console.error("AJAX Error: " + xhr.status + " - " + error);
+                }
+            });
+        } else {
+            // If no date is selected, disable the button and display a message
+            $('#modalBtn').prop('disabled', true);
+            $('#packagedate').html('<span>Select a date to proceed.</span>');
+        }
+    });
+
+    // Handle button click
+    $('#modalBtn').on('click', function() {
+        if ($('#modalBtn').prop('disabled')) {
+            alert('Please select a date before proceeding.');
+        }
+    });
 });
 
-            
-            // Get the selected date
-            //alert('Selected date: ' + selectedDate); // You can use the selectedDate variable for further processing
-            // You can pass the selected date to your AJAX call or perform other actions here
+</script>
+
+     <script>
+        var cards = document.querySelectorAll('.car-card');
+
+        // Add a click event listener to each 'card'
+        cards.forEach(function(card) {
+            card.addEventListener('click', function() {
+                // Remove the 'selected' class from all cards
+                cards.forEach(function(c) {
+                    c.classList.remove('selected');
+                });
+                // Toggle the 'selected' class for the clicked card
+                card.classList.toggle('selected');
+            });
         });
-    });
     </script>
+    <!--<script>
+        var 
+        documnet.getElementById("modalBtn").addEventListener('click', function(event){
+
+        }
+    </script>-->
 
 
 </body>

@@ -1,8 +1,10 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>AutoWash - Car Wash Website Template</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free Website Template" name="keywords">
         <meta content="Free Website Template" name="description">
@@ -32,8 +34,8 @@
                     <div class="col-lg-4 col-md-12">
                         <div class="logo">
                             <a href="index.html">
-                                <h1>Auto<span>Wash</span></h1>
-                                <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                            <h1>AUTO<span>Wash</span></h1>
+                         <!-- <img src="img/logo.jpg" alt="Logo"> -->
                             </a>
                         </div>
                     </div>
@@ -91,7 +93,7 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
                             <a href="customerdashboard.php" class="nav-item nav-link">Home</a>
-                            <a href="about.php" class="nav-item nav-link active">About</a>
+                            <a href="about1.php" class="nav-item nav-link active">About</a>
                             <a href="service.php" class="nav-item nav-link">Service</a>
                             <a href="package.php" class="nav-item nav-link">Package</a>
                             <a href="location.php" class="nav-item nav-link">Washing Points</a>
@@ -107,7 +109,7 @@
                             <a href="contact1.php" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="ml-auto">
-                            <a class="btn btn-custom" href="#">Booking</a>
+                            <a class="btn btn-custom" href="User.php"><?php echo $_SESSION['customername'] ; ?></a>
                         </div>
                     </div>
                 </nav>
@@ -148,41 +150,12 @@
                                     <i class="fa fa-map-marker-alt"></i>
                                     <div class="location-text">
                                         <h3>Car Washing Point</h3>
-                                        <p>123 Street, New York, USA</p>
+                                        <p>piravom, Kerala, INDIA</p>
                                         <p><strong>Call:</strong>+012 345 6789</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="location-item">
-                                    <i class="fa fa-map-marker-alt"></i>
-                                    <div class="location-text">
-                                        <h3>Car Washing Point</h3>
-                                        <p>123 Street, New York, USA</p>
-                                        <p><strong>Call:</strong>+012 345 6789</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="location-item">
-                                    <i class="fa fa-map-marker-alt"></i>
-                                    <div class="location-text">
-                                        <h3>Car Washing Point</h3>
-                                        <p>123 Street, New York, USA</p>
-                                        <p><strong>Call:</strong>+012 345 6789</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="location-item">
-                                    <i class="fa fa-map-marker-alt"></i>
-                                    <div class="location-text">
-                                        <h3>Car Washing Point</h3>
-                                        <p>123 Street, New York, USA</p>
-                                        <p><strong>Call:</strong>+012 345 6789</p>
-                                    </div>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
                    

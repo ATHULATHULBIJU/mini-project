@@ -2,7 +2,6 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>AutoWash - Car Wash Website Template</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free Website Template" name="keywords">
         <meta content="Free Website Template" name="description">
@@ -32,8 +31,8 @@
                     <div class="col-lg-4 col-md-12">
                         <div class="logo">
                             <a href="index.php">
-                                <h1>Auto<span>Wash</span></h1>
-                                <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                            <h1>AUTO<span>Wash</span></h1>
+                        <!-- <img src="img/logo.jpg" alt="Logo"> -->
                             </a>
                         </div>
                     </div>
@@ -68,7 +67,7 @@
                                     </div>
                                     <div class="top-bar-text">
                                         <h3>Email Us</h3>
-                                        <p>info@example.com</p>
+                                        <p>autowash@example.com</p>
                                     </div>
                                 </div>
                             </div>
@@ -95,15 +94,6 @@
                             <a href="signup.php" class="nav-item nav-link">Service</a>
                             <a href="signup.php" class="nav-item nav-link">Package</a>
                             <a href="signup.php" class="nav-item nav-link">Washing Points</a>
-                            <div class="nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
-                                <div class="dropdown-menu">
-                                    <a href="signup.php" class="dropdown-item">Blog Grid</a>
-                                    <a href="signup.php" class="dropdown-item">Detail Page</a>
-                                    <a href="signup.php" class="dropdown-item">Team Member</a>
-                                    <a href="signup.php" class="dropdown-item">Schedule Booking</a>
-                                </div>
-                            </div>
                             <a href="signup.php" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="ml-auto">
@@ -156,7 +146,6 @@
                                 <li><i class="far fa-check-circle"></i>Interior wet cleaning</li>
                                 <li><i class="far fa-check-circle"></i>Window wiping</li>
                             </ul>
-                            <a class="btn btn-custom" href="">Learn More</a>
                         </div>
                     </div>
                 </div>

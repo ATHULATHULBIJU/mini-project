@@ -17,6 +17,7 @@ if (isset($_GET['washtypeID'])) {
         $total=$row['price'];
     }
 }
+$_SESSION['totamountservice']=$total;
 ?>
 <div id="totalamount">
 

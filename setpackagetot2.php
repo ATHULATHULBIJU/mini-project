@@ -16,7 +16,7 @@ $total=$amount+$_SESSION['packageprice'];
 }else{
     $total=$amount;
 }
-
+$_SESSION['totalforpackage']=$total;
 }
 ?>
 <div id="cartype">

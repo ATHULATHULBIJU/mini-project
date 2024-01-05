@@ -21,7 +21,6 @@ else{
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>AutoWash - Car Wash Website Template</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta content="Free Website Template" name="keywords">
         <meta content="Free Website Template" name="description">
@@ -51,8 +50,8 @@ else{
                     <div class="col-lg-4 col-md-12">
                         <div class="logo">
                             <a href="index.html">
-                                <h1>Auto<span>Wash</span></h1>
-                                <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                            <h1>AUTO<span>Wash</span></h1>
+                           <!-- <img src="img/logo.jpg" alt="Logo"> -->
                             </a>
                         </div>
                     </div>
@@ -110,7 +109,7 @@ else{
                     <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                         <div class="navbar-nav mr-auto">
                             <a href="customerdashboard.php" class="nav-item nav-link">Home</a>
-                            <a href="about.php" class="nav-item nav-link active">About</a>
+                            <a href="about1.php" class="nav-item nav-link active">About</a>
                             <a href="service.php" class="nav-item nav-link">Service</a>
                             <a href="package.php" class="nav-item nav-link">Package</a>
                             <a href="location.php" class="nav-item nav-link">Washing Points</a>
@@ -126,7 +125,7 @@ else{
                             <a href="contact1.php" class="nav-item nav-link">Contact</a>
                         </div>
                         <div class="ml-auto">
-                            <a class="btn btn-custom" href="booking.php">Booking</a>
+                            <a class="btn btn-custom" href="booking.php"><?php echo $_SESSION['customername'] ; ?></a>
                         </div>
                     </div>
                 </nav>
@@ -157,7 +156,7 @@ else{
             <div class="container">
                 <div class="section-header text-center">
                     <p>Get In Touch</p>
-                    <h2>Contact for any query</h2>
+                    <h2>Feedback</h2>
                 </div>
                 <div class="row">
                     <div class="col-md-4">
@@ -193,33 +192,46 @@ else{
                         </div>
                     </div>
                     <div class="col-md-7">
-                        <div class="contact-form">
-                            <div id="success">                           
-                                <div class="alert alert-success">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                 <strong>Your message has been sent. </strong>
-                             </div></div>
-                            <form action = "contact1.php" method ="POST">
-                            
-                                <div class="control-group">
-                                    <input type="text" class="form-control" id="subject" name ="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="control-group">
-                                    <textarea class="form-control" id="message" name ="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div>
-                                    <button class="btn btn-custom" type="submit" name= "submit" id="sendMessageButton">Send Message</button>
-                                </div>
-                            </form>
-                            
-                        </div>
+    <div class="contact-form">
+        <div id="success">                           
+            <div class="alert alert-success" id="success-message" style="display:none;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <strong>Your message has been sent. </strong>
+            </div>
+        </div>
+        <form action="contact1.php" method="POST" onsubmit="showSuccessMessage()">
+            <div class="control-group">
+                <input type="text" class="form-control" id="subject" name="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
+                <p class="help-block text-danger"></p>
+            </div>
+            <div class="control-group">
+                <textarea class="form-control" id="message" name="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
+                <p class="help-block text-danger"></p>
+            </div>
+            <div>
+                <button class="btn btn-custom" type="submit" name="submit" id="sendMessageButton">Send Message</button>
+            </div>
+        </form>
+
+        <script>
+            function showSuccessMessage() {
+                // Display the success message when the form is submitted
+                document.getElementById("success-message").style.display = "block";
+
+                // You can also change the text dynamically if needed
+                document.getElementById("success-message").innerHTML = "<strong>Your new success message goes here. </strong>";
+
+                // Prevent the form from submitting (remove this line if you want the form to submit)
+                return false;
+            }
+        </script>
+    </div>
+</div>
+
+ <div class="col-md-12">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1600663868074!5m2!1sen!2sbd" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="true" tabindex="0"></iframe>
                     </div>
-                    <div class="col-md-12">
-                        <iframe src="https://maps.app.goo.gl/VjKBrvTNJgEaWVqt5" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                    </div>
-                </div>
+               </div>
             </div>
         </div>
         <!-- Contact End -->

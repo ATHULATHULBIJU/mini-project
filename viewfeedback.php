@@ -106,7 +106,7 @@ input[type="file"] {
     include('admin.html');
     ?>
 
-    <main class="main" style="background-image:url('img/car-wash-detailing-station.jpg');">
+    <main class="main" >
         <main class="container">
             <div class="row">
                 <?php
